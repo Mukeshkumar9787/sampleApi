@@ -2,8 +2,6 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import cors from 'cors';
-import { orders, units, holidays, lines} from './src/routes/index.js';
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -11,10 +9,6 @@ const __dirname = dirname(__filename);
 const app = express()
 app.use(express.json())
 
-const path = __dirname + '/src/views/';
-
-
-app.use(express.static(path));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -36,13 +30,8 @@ let corsOptions = {
 app.use(cors(corsOptions))
 
 app.get('/', function (req, res) {  
-  res.sendFile(path + "index.html");
+  res.json({"hello": "hi});
 });
-
-app.use("/orders", orders);
-app.use("/units", units);
-app.use("/holidays", holidays);
-app.use("/lines", lines);
 
 BigInt.prototype['toJSON'] = function () {
   return parseInt(this.toString());
