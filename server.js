@@ -30,7 +30,7 @@ let corsOptions = {
 app.use(cors(corsOptions))
 
 app.get('/', function (req, res) {  
-  res.json({"hello": "hi});
+  res.json({"hello": "hi"});
 });
 
 BigInt.prototype['toJSON'] = function () {
